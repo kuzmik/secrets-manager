@@ -5,7 +5,9 @@ import {
     initialize,
     initializeStorage,
     SecretManagerOptions,
-    updateSecret
+    updateSecret,
+    deleteSecret
+
 } from '../src/keeper'
 import {nodePlatform} from '../src/node/nodePlatform';
 import {connectPlatform} from '../src/platform';
@@ -23,20 +25,21 @@ const oneTimeToken = 'US:ONE_TIME_TOKEN'
 
 async function test() {
     const kvs = localConfigStorage(configFileName)
-    await initializeStorage(kvs, oneTimeToken)
+    //await initializeStorage(kvs, oneTimeToken)
     const options: SecretManagerOptions = {
         storage: kvs,
         // queryFunction: cachingPostFunction
         allowUnverifiedCertificate: true
     }
     const { records } = await getSecrets(options)
-    // const { records } = await getSecrets(options, ['SECRET_UID'])
+    //const { records } = await getSecrets(options, ['SECRET_UID'])
     console.log(inspect(records, false, 6))
 
-    // const templateRecord = records[1]
-    // templateRecord.data.title = 'RF14'
+    //const templateRecord = records[1]
+    //templateRecord.data.title = 'RF14'
     // const recordUid = await createSecret(options, templateRecord.folderUid!, templateRecord.data)
     // console.log(recordUid)
+    //await deleteSecret(options, ["fcvDivuK72R-VneHRTMXVw","9_EOpc2wpGkrIXaPOahsWQ"])
     // await updateSecret(options, firstRecord)
     // const fileData = await downloadFile(response.records[0].files![0])
     // console.log(fileData)
